@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Add Recipe</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header d-flex justify-content-between">
+            <div class="header_title" >
+                <h1>Add New Recipe</h1>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %} 
+            </div>
+            <div class="header_welcome d-flex justify-content-between">
+                <h4><a href="/success">Dashboard</a> | <a href="/logout">Logout</a></h4>
+            </div>
+        </div>
+        <div class="d-flex flex-column justify-content-around">
+            <form action="/create_recipe" method="POST">
+                <div class="row mb-3">
+                    <label for="name">Name:</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="recipe_name" id='name'>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="desc">Description: </label>
+                    <div class="col-sm-10">
+                        <textarea name="desc" id="desc" cols="30" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inst">Instructions: </label>
+                    <div class="col-sm-10">
+                        <textarea name="instructions" id="inst" cols="30" rows="8"></textarea>
+                    </div>
+                </div>
+                <div><legend>Under 30 minutes to prepare?:</legend>
+                <input type="radio" name="time" value="Yes"> Yes
+                <input type="radio" name="time" value="No"> No</div>
+                <input type="submit" class="btn btn-outline-primary" value="Create">
+            </form>
+        </div>
+</body>
+</html>
